@@ -119,9 +119,44 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.famiticket.com.tw/eticketverify/")))
         }
 
+        btnUpsertMember.setOnLongClickListener {
+            val upsertObject = btnUpsertMember.text.toString()
+
+            when (upsertObject) {
+                "Upsert Fubon Member" -> {
+                    btnUpsertMember.text = "Upsert Rakuten Member"
+                }
+                "Upsert Rakuten Member" -> {
+                    btnUpsertMember.text = "Upsert Fubon Member"
+                }
+                else -> {
+                    btnUpsertMember.text = "Upsert Fubon Member"
+                }
+            }
+
+            true
+        }
+
         btnUpsertMember.setOnClickListener {
             vmMemberViewModel.getDatas("UpsertMember")
             vmMemberViewModel.upsertMemberDatas.observe(this) {
+
+                val upsertObject = btnUpsertMember.text.toString()
+                var team = ""
+
+                when (upsertObject) {
+                    "Upsert Fubon Member" -> {
+                        team = "Fubon"
+                    }
+                    "Upsert Rakuten Member" -> {
+                        team = "Rakuten"
+                    }
+                    else -> {
+                        team = "Fubon"
+                    }
+                }
+
+
                 val conditionList =
                     MemberList.sortedByDescending { it.LastTime }.toMutableList()
 
@@ -137,10 +172,10 @@ class MainActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        upsertMember(editMemberId.text.toString().padStart(11, '0'))
+                        upsertMember(editMemberId.text.toString().padStart(11, '0'),team)
                     }
                 } else {
-                    upsertMember(editMemberId.text.toString().padStart(11, '0'))
+                    upsertMember(editMemberId.text.toString().padStart(11, '0'),team)
                 }
             }
         }
@@ -179,11 +214,12 @@ class MainActivity : AppCompatActivity() {
         webFami.loadUrl("https://www.famiticket.com.tw/Home")
     }
 
-    private fun upsertMember(memberId: String) {
+    private fun upsertMember(memberId: String,team: String) {
+
         val data = MemberEn(
             ID = memberId,
             LastTime = "",
-            Team = "Fubon",
+            Team = team,
         )
         vmMemberViewModel.upsertOne(data)
 

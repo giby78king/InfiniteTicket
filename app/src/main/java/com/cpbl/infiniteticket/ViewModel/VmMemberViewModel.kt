@@ -36,4 +36,9 @@ class VmMemberViewModel : ViewModel() {
             data.save()
         }
     }
+    fun deleteOne(data: MemberEn){
+        viewModelScope.launch {
+            data.delete()
+        }
+    }
 }

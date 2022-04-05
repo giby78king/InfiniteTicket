@@ -50,4 +50,11 @@ object FirebaseService_Member {
             }
     }
 
+    fun deleteData(ID: String) {
+        db.document(ID)
+            .delete()
+            .addOnSuccessListener {
+            }
+    }
+
 }

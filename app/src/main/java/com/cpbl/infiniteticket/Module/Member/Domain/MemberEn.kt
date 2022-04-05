@@ -36,4 +36,7 @@ data class MemberEn(
             FirebaseService_Member.updateData(ID, dbData)
         }
     }
+    fun delete() {
+        FirebaseService_Member.deleteData(ID)
+    }
 }

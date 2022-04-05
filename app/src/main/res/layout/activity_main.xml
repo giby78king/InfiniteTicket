@@ -200,7 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/style_edit_button"
-                        android:text="Upsert Member"
+                        android:text="Upsert Fubon Member"
                         android:textAllCaps="false"
                         android:textColor="#ffffff"
                         android:textSize="20dp"
