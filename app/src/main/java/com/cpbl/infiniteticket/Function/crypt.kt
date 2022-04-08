@@ -1,5 +1,6 @@
 package com.cpbl.infiniteticket.Function
 
+import android.util.Log
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
@@ -65,7 +66,16 @@ object crypt {
         val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
         val ivSpec = IvParameterSpec(IV_BYTES)
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, ivSpec)
-        val encrypted = cipher.doFinal(sSrc.toByteArray(charset("UTF-16LE")))
+        val encrypted = cipher.doFinal(sSrc.toByteArray(charset("UTF_16LE")))
         return Base64.getEncoder().encodeToString(encrypted)
+    }
+    fun decrypt(sSrc: String): String {
+        val data = Base64.getDecoder().decode(sSrc)
+        val skeySpec = SecretKeySpec(KEY, "AES")
+        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+        val ivSpec = IvParameterSpec(IV_BYTES)
+        cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivSpec)
+        val original = cipher.doFinal(data)
+        return String(original, Charsets.UTF_16LE)
     }
 }

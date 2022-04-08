@@ -116,7 +116,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnVerify.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.famiticket.com.tw/eticketverify/")))
+            injectETicketVerify()
+        }
+
+        btnVerify.setOnLongClickListener {
+            when (btnVerify.text.toString()) {
+                "VerifyRakuten" -> {
+                    btnVerify.text = "VerifyFubon"
+                }
+                "VerifyFubon" -> {
+                    btnVerify.text = "VerifyRakuten"
+                }
+                else -> {
+                    btnVerify.text = "VerifyFubon"
+                }
+            }
+            true
         }
 
         btnUpsertMember.setOnLongClickListener {
@@ -172,10 +187,10 @@ class MainActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        upsertMember(editMemberId.text.toString().padStart(11, '0'),team)
+                        upsertMember(editMemberId.text.toString().padStart(11, '0'), team)
                     }
                 } else {
-                    upsertMember(editMemberId.text.toString().padStart(11, '0'),team)
+                    upsertMember(editMemberId.text.toString().padStart(11, '0'), team)
                 }
             }
         }
@@ -214,7 +229,39 @@ class MainActivity : AppCompatActivity() {
         webFami.loadUrl("https://www.famiticket.com.tw/Home")
     }
 
-    private fun upsertMember(memberId: String,team: String) {
+    private fun injectETicketVerify() {
+        val calendar = Calendar.getInstance()
+        val timeFormat = SimpleDateFormat("yyyyMMddHHmmss")
+        timeFormat.timeZone = TimeZone.getTimeZone("Asia/Taipei")
+        val time = timeFormat.format(calendar.time)
+
+
+        val sessionToken = when (btnVerify.text.toString()) {
+            "VerifyFubon" -> {
+                crypt.encrypt("|fbgt111|$time|$time|富邦育樂2||||121.136.106.121|")
+            }
+            "VerifyRakuten" -> {
+                crypt.encrypt("|rakuten21|$time|$time|樂天桃猿||||121.77.65.121|")
+            }
+            else -> {
+                crypt.encrypt("|fbgt111|$time|$time|富邦育樂2||||121.136.106.121|")
+            }
+        }
+
+
+        CookieManager.setAcceptFileSchemeCookies(true)
+        val cookieManager: CookieManager = CookieManager.getInstance()
+        cookieManager.setAcceptCookie(true)
+        cookieManager.acceptCookie()
+        Log.d("token", ":" + sessionToken)
+        cookieManager.setCookie(
+            "https://www.famiticket.com.tw/eticketverify/",
+            "VerifyToken=$sessionToken"
+        )
+        webFami.loadUrl("https://www.famiticket.com.tw/eticketverify/")
+    }
+
+    private fun upsertMember(memberId: String, team: String) {
 
         val data = MemberEn(
             ID = memberId,
