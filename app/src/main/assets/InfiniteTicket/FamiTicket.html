@@ -1,0 +1,1757 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>FamiTicket全網購票網</title>
+    <link href="./lib/fa-fonts.css" rel="stylesheet"/>
+    <link href="./lib/fm-cal.css" rel="stylesheet"/>
+    <link href="./bootstrap.css" rel="stylesheet"/>
+    <link href="./index.css" rel="stylesheet"/>
+    <script src="./jquery-1.12.4.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="./jquery-qrcode-0.18.0.min.js"></script>
+
+</head>
+<body>
+<header class="header container no-print">
+    <div class="row">
+        <div class="header__col col-lg-12">
+            <div class="famitkt-logo">
+                <a class="famitkt-logo__link" href="https://ticket.fami.life/Home">
+                    <img class="famitkt-logo__img" src="./logo.png" class="img-responsive img-left">
+                </a>
+            </div>
+
+            <div class="d-flex align-items-center ml-auto">
+                <div class="header__search d-none d-lg-block">
+                    <button class="btn header__search-btn" type="button" data-target="#searchModal"
+                            data-toggle="modal">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="user-serve">
+                    <div class="user-serve__inner">
+                        <a class="user-serve__item"
+                           href="https://ticket.fami.life/Home/User/Orders">
+                            <i class="fa-userss"></i>
+                            <span class="user-serve__name">Bill</span>
+                        </a>
+                        <a class="user-serve__item"
+                           href="https://ticket.fami.life/Home/user/signout">
+                            <i class="fa-logout"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-lg-none">
+                    <button class="navbar-toggler" aria-expanded="false" aria-controls="navbarNav"
+                            aria-label="Toggle navigation" type="button" data-target="#navbarNav"
+                            data-toggle="collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+<nav class="header__navbar navbar navbar-expand-lg no-print">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="" data-toggle="dropdown"><span>活動分類</span></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        <li class="dropdown-item dropdown-submenu">
+                            <a class="dropdown-menu__link"
+                               href="https://ticket.fami.life/Home/Activity/Search/S01">
+                                運動
+                                <span class="dropdown-menu__link-eng">SPORTS</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a class="dropdown-submenu__link"
+                                       href="https://ticket.fami.life/Home/Activity/Search/S01/001">
+                                        職棒
+                                        <span class="dropdown-menu__link-eng">Professional baseball</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="dropdown-submenu__link"
+                                       href="https://ticket.fami.life/Home/Activity/Search/S01/002">
+                                        籃球
+                                        <span class="dropdown-menu__link-eng">basketball</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="dropdown-submenu__link"
+                                       href="https://ticket.fami.life/Home/Activity/Search/S01/003">
+                                        羽球
+                                        <span class="dropdown-menu__link-eng">Badminton</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown-item dropdown-submenu">
+                            <a class="dropdown-menu__link"
+                               href="https://ticket.fami.life/Home/Activity/Search/C01">
+                                演唱會
+                                <span class="dropdown-menu__link-eng">CONCERT</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a class="dropdown-submenu__link"
+                                       href="https://ticket.fami.life/Home/Activity/Search/C01/C11">
+                                        個人演唱會
+                                        <span class="dropdown-menu__link-eng">Personal concert</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown-item dropdown-submenu">
+                            <a class="dropdown-menu__link"
+                               href="https://ticket.fami.life/Home/Activity/Search/M01">
+                                電影
+                                <span class="dropdown-menu__link-eng">MOVIE</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a class="dropdown-submenu__link"
+                                       href="https://ticket.fami.life/Home/Activity/Search/M01/001">
+                                        喜劇片
+                                        <span class="dropdown-menu__link-eng">Funny</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown-item dropdown-submenu">
+                            <a class="dropdown-menu__link"
+                               href="https://ticket.fami.life/Home/Activity/Search/E01">
+                                展覽
+                                <span class="dropdown-menu__link-eng">EXHIBITION</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a class="dropdown-submenu__link"
+                                       href="https://ticket.fami.life/Home/Activity/Search/E01/002">
+                                        書展
+                                        <span class="dropdown-menu__link-eng">Book Exhibition</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item d-lg-none">
+                    <a class="nav-link" data-toggle="modal" data-target="#searchModal"
+                       href="#searchModal">活動探索</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ticket.fami.life/Home/Home/Faq">常見問題</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ticket.fami.life/Home/User/Orders">會員專區</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ticket.fami.life/Home/Home/TicketInstruction">購/退票須知</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Modal -->
+<div class="modal fade search-modal" id="searchModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    活動探索
+                </div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body search-modal__body">
+                <div class="search-modal__inner">
+                    <div class="search-modal__input-wrapper">
+                        <label for="searchName">活動名稱：</label>
+                        <input id="searchName" type="text" class="search-modal__input"
+                               maxlength="10">
+                    </div>
+                    <div class="search-modal__input-wrapper">
+                        <label for="searchCatg">活動分類：</label>
+                        <select id="searchCatg" class="search-modal__select">
+                            <option value="">全部</option>
+                            <option value="S01">
+                                運動
+                            </option>
+                            <option value="C01">
+                                演唱會
+                            </option>
+                            <option value="M01">
+                                電影
+                            </option>
+                            <option value="E01">
+                                展覽
+                            </option>
+
+                        </select>
+                    </div>
+                    <div class="search-modal__input-wrapper">
+                        <label for="searchDateS">活動日期：</label>
+                        <input id="searchDateS" type="text" class="search-modal__input"
+                               placeholder="YYYY/MM/DD">~
+                        <input id="searchDateE" type="text" class="search-modal__input"
+                               placeholder="YYYY/MM/DD">
+                    </div>
+                    <div class="search-modal__input-wrapper">
+                        <button type="button" class="btn search-modal__submit"
+                                onclick="btnSearchHeaderClick();">
+                            <i class="fas fa-search"></i><span
+                                class="search-modal__submit-text">搜尋</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="queueModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    貼心提醒
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-1">
+                    <label id="queueText"></label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-modal" data-dismiss="modal">
+                        <span>取消</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="alertModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    貼心提醒
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-1">
+                    <label id="alertText"></label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-modal" data-dismiss="modal">
+                        <span>確定</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function showQueue() {
+        countdownnumber = 5;
+
+        if (countdownnumber > 0) {
+            $("#queueText").html("<table align='center'><tr><td>系統忙碌中， </td><td id='countdown'></td><td> 秒鐘後，自動嘗試進入場次頁。</td></tr></table>");
+        }
+        else
+        {
+            $("#queueText").html("<table align='center'><tr><td>系統忙碌中， 請稍後進入場次頁。</td></tr></table>");
+        }
+
+        $("#queueModal").modal('show');
+
+        //重新進入倒數
+        countdownfunc();
+
+        //關閉訊息，結束倒數
+        $("#queueModal").on('hide.bs.modal', function (e) {
+        clearTimeout(countdownid);
+        });
+    }
+
+    function countdownfunc() {
+        var x = document.getElementById("countdown");
+        x.innerHTML = countdownnumber;
+        if (countdownnumber == 0) {
+            CartWaiting();
+        } else {
+            countdownnumber--;
+            if (countdownid) {
+                clearTimeout(countdownid);
+            }
+            countdownid = setTimeout(countdownfunc, 1000);
+        }
+    }
+
+
+
+
+</script>
+<script>
+        function calendar(t, e, n) { var i = this, o = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); return this.opened = !0, this.t = t, this.y = e, this.m = n, this.d = null, /Edge/i.test(navigator.userAgent) && t.setAttribute("type", "text"), this.render = function (t, e) { var n = Date, o = !isNaN(e), s = new n(t, e - 1, 1), r = s.getDay(), a = new n(t, e, 0).getDate(), h = Array.apply(0, Array(o ? 42 : 12)); o && h.unshift("日", "一", "二", "三", "四", "五", "六"), t = o ? s.getFullYear() : t, e = s.getMonth() + 1, this.$w || (this.$w = $('<div class="famiCal-wrapper"></div>').appendTo("body")), this.opened && (this.$w.html('<div class="famiCal' + (o ? "" : " famiCal--month") + '"><table border=1><tr><td>《</td><td colspan=' + (o ? 5 : 2) + ">" + t + "年" + (o ? e + "月" : "") + "</td><td>》</td></tr>" + h.map(function (i, s) { var a = new n(t, e - 1, s - r - 6), h = a.getMonth() + 1 == e; return (s % (o ? 7 : 4) ? "" : (s ? "</tr>" : "") + "<tr>") + "<td" + (o && s > 6 && !h ? ' class="not-current">' : ">") + (o ? s < 7 ? i : a.getDate() : s + 1 + "月") + "</td>" }).join("") + "</tr></table></div>"), this.reposition(), this.$w.find("td").map(function (t, e) { return e.num = t, e }).on("mousedown", function (n) { var s = n.target.num, h = n.target.innerText; s < 3 ? i.render(t + (o ? 0 : s - 1), o && s - 1 ? e + s - 1 : NaN) : (s > 9 || !o) && (o && s > r + 9 && s <= r + a + 9 ? (i.d = parseInt(h), i.t.value = t + "-" + (e < 10 ? "0" : "") + e + "-" + (h < 10 ? "0" : "") + h, i.onChange && "function" == typeof i.onChange && i.onChange(t, e, h), i.t.blur()) : i.render(t, o ? e + (s < r + 10 ? -1 : 1) : s - 2)) })), this.$w.on("mousedown", function (t) { t.preventDefault() }) }, this.open = function () { this.opened = !0, this.render(this.y, this.m) }, this.close = function () { this.opened = !1, this.$w.html("") }, this.reposition = function () { var t = this.$w, e = this.t; this.opened && (t.css("top", $(e).offset().top + e.clientHeight), t.css("left", $(e).offset().left)) }, this.onChange = null, o || ($(t).on("focus", function (t) { t.preventDefault(), i.open(), i.render(i.y, i.m) }), $(t).on("blur", function () { i.close() })), this }
+
+
+
+</script>
+<script>
+        var d = new Date();
+        new calendar(searchDateS, d.getFullYear(), d.getMonth() + 1);
+        new calendar(searchDateE, d.getFullYear(), d.getMonth() + 1);
+
+
+
+</script>
+
+<div>
+
+    <div class="member container min-hight-container">
+
+        <ul class="member__tab nav nav-pills mb-3 row" id="pills-tab" role="tablist">
+            <li class="nav-item col-3 text-center">
+                <a class="nav-link" id="order-search-tab" href="/Home/User/Orders">訂單查詢</a>
+            </li>
+            <li class="nav-item col-3 text-center">
+                <a class="nav-link active" id="eticket-tab" href="#">電子票劵</a>
+            </li>
+            <li class="nav-item col-3 text-center">
+                <a class="nav-link" id="member-update-tab" href="/Home/User/Edit">會員資料修改</a>
+            </li>
+            <li class="nav-item col-3 text-center">
+                <a class="nav-link" id="ftpoint-tab" href="/Home/User/Edit">FT點數紀錄</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="order-search">
+                <ul class="nav nav-tabs notes-tab">
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           data-toggle="tab"
+                           id="unUsed"
+                           href="#unUsedContent">未使用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           data-toggle="tab"
+                           id="Used"
+                           href="#UsedContent">已使用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           data-toggle="tab"
+                           id="Sending"
+                           href="#SendingContent">待接收</a>
+                    </li>
+                </ul>
+                <div id="editArea">
+                    <table>
+                        <tr>
+                            <select name="Team" style="width:250px;height:50px;">
+                                <option value="Fubon">Fubon</option>
+                                <option value="Rakuten">Rakuten</option>
+                            </select>
+                        </tr>
+                        <br><br>
+                        <tr>
+                            <td><input id="Edit1" value="T0029187"
+                                       style="width:250px;"><label>訂單編號</label></td>
+                        </tr>
+                        <tr>
+                            <td><input id="Edit2" value="2021.03.04 (四) 18:20" style="width:250px;"><label>訂購時間</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="Edit3" value="中華職棒33年富邦悍將主場例行賽"
+                                       style="width:250px;"><label>活動</label></td>
+                        </tr>
+                        <tr>
+                            <td><input id="Edit4" value="新莊棒球場"
+                                       style="width:250px;"><label>場地</label></td>
+                        </tr>
+                        <tr>
+                            <td><input id="Edit5" value="002" style="width:250px;"><label>場次</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input id="Edit6" value="2021.04.14 (三) 14:00" style="width:250px;"><label>場次時間</label>
+                            </td>
+                        </tr>
+                        <tr><td>
+                            <button class="btn btn-buy" onclick="setTimeOne()">14:05</button>
+                            <button class="btn btn-buy" onclick="setTimeTwo()">17:05</button>
+                            <button class="btn btn-buy" onclick="setTimeThree()">18:35</button></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button class="btn btn-buy" onclick="closeEdit()">關閉編輯</button>
+                    <br>
+                    <br>
+                    </td>
+                </div>
+
+                <div class="tab-content">
+
+                    <div class="tab-pane fade show active"
+                         id="unUsedContent">
+
+                        <div class="orders">
+                            <div class="orders__item">
+                                <table class="table order-table order-table--top order-table--opened">
+                                    <tbody>
+                                    <tr>
+                                        <td class="order-table__title">訂單編號</td>
+                                        <td colspan="3" id="Order1">T0029187</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">訂購時間</td>
+                                        <td colspan="3" id="Order2">2021.03.04 (四) 18:20</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">活動</td>
+                                        <td colspan="3" id="Order3">中華職棒33年富邦悍將主場例行賽</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">場地</td>
+                                        <td colspan="3" id="Order4">新莊棒球場</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">場次</td>
+                                        <td colspan="3" id="Order5">002</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">場次時間</td>
+                                        <td colspan="3" id="Order6">2021.04.14 (三) 14:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">退票說明</td>
+                                        <td colspan="3">
+                                            <button class="btn btn-green"
+                                                    onclick="openRefundDesc('個人因素退票收票價10%手續費，請於該場次開打3天前(不含開打日)申辦，FamiTicket>首頁下方>申請退票，電子票限由原購票會員申請。若有需整區購買區域票券，不受理單張退票，需同時辦理，因雨延賽，非電子票請依球團公告方式辦理；電子票由購票系統於3個工作日內自動刪除訂單，票款退回原購票者購票信用卡帳戶，如欲觀看之後場次請重新購票。')">
+                                                詳細內容
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="order-table__detail order-table__detail--opened">
+                                    <table class="order-table table order-table--center">
+                                        <thead>
+                                        <tr>
+                                            <th class="order-table__title">區域</th>
+                                            <th class="order-table__title">座位</th>
+                                            <th class="order-table__title">票種/票價(元)</th>
+                                            <th class="order-table__title">票劵狀態</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="appendDetail">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div id="editDetail">
+                                    <table>
+                                        <tr>
+                                            <td><input id="Detail1"
+                                                       value="FT2103040001082227"><label>票號</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><input id="Detail2"
+                                                       value="A5區"><label>區域</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input id="Detail3" value="1排 2號"><label>座位</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><input id="Detail4"
+                                                       value="內票全票 / 300"><label>票種票價</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input id="minutes" value="5"><label>倒數時間</label>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                    <button class="btn btn-buy" onclick="addDetail()">新增</button>
+                                    </td>
+                                    <button class="btn btn-buy" onclick="closeEditDetail()">關閉編輯
+                                    </button>
+                                    </td>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade show"
+                         id="UsedContent">
+                        <p>僅顯示7日內已使用電子票</p>
+                        <div class="orders">
+                            <div class="orders__item">
+                                <table class="table order-table order-table--top order-table--opened">
+                                    <tbody>
+                                    <tr>
+                                        <td class="order-table__title">訂單編號</td>
+                                        <td colspan="3" id="UsedOrder1">T0057690</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">訂購時間</td>
+                                        <td colspan="3" id="UsedOrder2">----------</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">活動</td>
+                                        <td colspan="3" id="UsedOrder3">----------</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">場地</td>
+                                        <td colspan="3" id="UsedOrder4">----------</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">場次</td>
+                                        <td colspan="3" id="UsedOrder5">----------</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">場次時間</td>
+                                        <td colspan="3" id="UsedOrder6">----------</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="order-table__detail order-table__detail--opened">
+                                    <table class="order-table table order-table--center">
+                                        <thead>
+                                        <tr>
+                                            <th class="order-table__title">區域</th>
+                                            <th class="order-table__title">座位</th>
+                                            <th class="order-table__title">票種/票價(元)</th>
+                                            <th class="order-table__title">票劵狀態</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="appendUsedDetail">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade show"
+                         id="SendingContent">
+
+                        <div class="orders">
+
+                            目前無電子票券資訊
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show"
+                         id="OverTimeContent">
+
+                        <div class="orders">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="qrCodeModal" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        票券顯示
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" onclick="btnChange();">
+                        <span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div style="text-align:center;">
+                        <span id="qrCountDownText" style="color:red;">有效時間：</span>
+                        <span id="qrCountDownTime" style="color:red;">5:00</span>
+                        <br>
+                        <br>
+                        <div id="ImgQRcode">
+                        </div>
+                        <br>
+                        <label id="qrConcession" style="color:red;font-size: 20px;"></label><br>
+                        <span style="color:blue">驗票後請重新整理頁面更新狀態</span>
+                    </div>
+                    <div>
+                        <br>
+                        <label id="qrBlockName">區域：</label><br>
+                        <label id="qrSeat">座位：</label><br>
+                        <label id="qrPriceName">票種/票價：</label><br>
+                        <label id="qrTaxNo">稅號：</label><br>
+                        <label id="resultText">本娛樂票券經台北市稅捐稽徵處109年1月15日，北市稽中山乙字第1094100318號核准使用，並向演出所在地之稅捐稽徵處申請報繳娛樂稅。(內含代徵娛樂稅)</label><br>
+
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                    <div id="divEtGift" style="text-align:center;">
+                        <button type="button" class="btn btn-green" id="qr" style="width:200px"
+                                data-dismiss="modal" onclick="btnSendingAsk(this);">
+                            <span>贈送</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="/Home/Styles/lib/swiper.min.css">
+    <div class="d-flex justify-content-center goTop__wrap no-print">
+        <a class="goTop" href="#">
+            <span class="goTop__text">TOP</span>
+        </a>
+    </div>
+    <footer class="footer-outer no-print">
+        <div class="container ">
+            <div class="row footer">
+                <div class="col-lg-4 col-sm-10 footer__desc">
+                    <img class="footer__desc-img" src="./logofooter.png">
+                    <ul>
+                        <li>
+                            <i class="fas fa-clock"></i>服務時間：
+                            <br>星期一～星期五 09:00~17:00
+                            <br>國定假日公休
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i> 02-6618-2822
+
+                        </li>
+                        <li><i class="fas fa-print"></i> 02-2531-6640</li>
+                        <li><i class="fas fa-envelope"></i><a
+                                href="mailto:fami080@familynet.com.tw"> fami080@familynet.com.tw</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-10 footer__service">
+                    <ul>
+                        <li><a href="http://www.familynet.com.tw" target="_blank">關於全網</a></li>
+                        <li><a href='https://ticket.fami.life/Home/Home/Cooperation'>廠商合作</a></li>
+
+                        <li><a href="#" data-target="#ServiceTermModal"
+                               data-toggle="modal">會員服務條款</a></li>
+                        <li><a href="#" data-target="#SecurityStatementModal" data-toggle="modal">資安聲明</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-sm-10 footer__account">
+                    <ul>
+                        <li><a href="https://eivt.familynet.com.tw/Page/EIV_Q.aspx" target="_blank">發票查詢</a>
+                        </li>
+                        <li><a href="https://ticket.fami.life/Home/Refund/GetPage" target="_blank">申請退票</a>
+                        </li>
+                        <li><a href="https://ticket.fami.life/Home/Refund/RefundProcess"
+                               target="_blank">退票進度查詢</a></li>
+                        <li><a href="https://www.family.com.tw/marketing/inquiry.aspx"
+                               target="_blank">取票店鋪查詢</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="copyright__inner row">
+                    <div class="col-sm-12 color-w">
+                        Copyright © FamilyNet Co., Ltd.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade terms-modal" id="ServiceTermModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            會員服務條款
+                        </div>
+                        <button class="close" type="button" data-dismiss="modal">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="terms-modal__content">
+                            <p>FamiTicket 全網購票網會員服務條款&nbsp;<br/>
+                                親愛的朋友您好：&nbsp;<br/>
+                                歡迎您成為FamiTicket全網購票網會員，為保障您的權益，在註冊成為FamiTicket全網購票網會員之前，請詳細閱讀本服務條款內容。&nbsp;<br/>
+                                &nbsp;|一、服務簡介&nbsp;<br/>
+                                (一)全網行銷股份有限公司(以下簡稱「全網行銷」)係依據本服務條款提供FamiTicket全網購票網(https://www.famiticket.com.tw)服務，(以下簡稱「本服務」)。當您開始使用本服務時，即表示已閱讀、瞭解並同意接受本服務條款之所有內容，並完全接受本服務現有與未來衍生的服務項目及內容。全網行銷有權於任何時間修改或變更本服務條款之內容，修改後的服務條款內容將公佈網站上，全網行銷將不會個別通知會員，建議會員隨時注意該等修改或變更。會員若於任何修改或變更後繼續使用本服務者，視為會員已閱讀、瞭解並同意接受該等修改或變更。若會員不同意服務條款之修改或變更，或不接受本服務條款的其他任一約定，會員應立即停止使用本服務。&nbsp;
+                            </p>
+
+                            <p>
+                                (二)若會員為未滿二十歲之未成年人，應於會員的法定代理人（或監護人）閱讀、瞭解並同意本服務條款之所有內容及其後修改變更後，方得註冊為會員、使用或繼續使用本服務。當會員使用或繼續使用全網行銷時，即視為會員的法定代理人（或監護人）已閱讀、瞭解並同意接受本服務條款之所有內容及其後修改變更。&nbsp;</p>
+
+                            <p>
+                                (三)為了確保會員之個人資料、隱私及消費者權益之保護，於交易過程中將蒐集、處理及利用會員本人或其法定代理人、委託代理人之個人資料，謹依個人資料保護法第8條規定告知以下事項：<br/>
+                                &nbsp;1.蒐集之目的：全網行銷基於040/行銷、063/非公務機關依法定義務所進行個人資料之蒐集處理及利用、067/信用卡、現金卡、轉帳卡或電子票證業務、069/契約、類似契約或其他法律關係事務、077/訂位、住宿登記與購票業務、090/消費者、客戶管理與服務、098/商業與技術資訊、107/採購與供應管理、129/會計與相關服務、135/資(通)訊服務、136/資(通)訊與資料庫管理、137/資通安全與管理、148/網路購物及其他電子商務服務、152/廣告或商業行為管理、157/調查、統計與研究分析、181/其他經營合於營業登記項目或組織章程所定之業務之特定目的，於您加入會員或進行交易的過程蒐集您的個人資料並且在前揭目的範圍內以合於法令規定的方式處理、利用您的個人資料。例示如下：&nbsp;<br/>
+                                &nbsp;(1)以會員身份使用全網行銷提供之各項服務時，於頁面中自動顯示會員資訊。&nbsp;<br/>
+                                &nbsp;(2)為遂行交易行為：會員對商品或勞務為預約、下標、購買、參與贈獎等之活動或從事其他交易時，關於商品配送、勞務提供、價金給付、回覆客戶之詢問、全網行銷對會員之詢問、相關售後服務及其他遂行交易所必要之業務。&nbsp;<br/>
+                                &nbsp;(3)宣傳廣告或行銷等：提供會員各種電子雜誌等資訊、透過電子郵件、郵件、電話等提供與服務有關之資訊。將會員所瀏覽之內容或廣告，依客戶之個人屬性或購買紀錄、全網行銷網站之瀏覽紀錄等項目，進行個人化作業、會員使用服務之分析、新服務之開發或既有服務之改善等。針對民調、活動、留言版等之意見，或其他服務關連事項，與會員進行聯繫。&nbsp;<br/>
+                                &nbsp;(4)回覆客戶之詢問：針對會員透過電子郵件、傳真、電話或其他任何直接間接連絡方式向全網行銷所提出之詢問進行回覆。<br/>
+                                &nbsp;(5)其他業務附隨之事項：附隨於上述(1)至(4)之利用目的而為全網行銷提供服務所必要之使用。<br/>
+                                &nbsp;(6)對於各別服務提供者之資訊提供：會員對服務提供者之商品或勞務為預約、下標、購買、參加贈獎活動或申請其他交易時，全網行銷於該交易所必要之範圍內，得將會員之個人資料檔案提供予服務提供者，並由服務提供者負責管理該個人資料檔案。全網行銷將以規約課予服務提供者依保障會員隱私權之原則處理個人資料之義務，但無法保證服務提供者會必然遵守。詳細內容，請向各別服務提供者洽詢。
+                            </p>
+
+                            <p>&nbsp;2.蒐集之個人資料類別：全網行銷於網站內蒐集的個人資料包括，&nbsp;<br/>
+                                &nbsp;(1)辨識個人者：例如會員之姓名、通訊地址、住家電話號碼、行動電話、電子郵遞地址等。&nbsp;<br/>
+                                &nbsp;(2)辨識財務者：例如信用卡或金融機構帳戶等。<br/>
+                                &nbsp;(3)個人描述：例如性別、出生年月日等。<br/>
+                                &nbsp;(4)政府資料中之辨識者：例如身分證統一編號。&nbsp;</p>
+
+                            <p>&nbsp;3.利用期間、地區、對象及方式：&nbsp;<br/>
+                                &nbsp;(1)期間：全網行銷會員當事人要求停止利用或全網行銷停止提供服務之日為止；依相關法令規定或因執行業務所必須保存期間或依個別契約約定之保存年限。&nbsp;<br/>
+                                &nbsp;(2)利用對象及方式：會員之個人資料僅供全網行銷及集團總公司(全家便利商店股份有限公司)、受全網行銷委託處理事務之委外機構(包括但不限於商品配送商)、對全網行銷有管轄權、調查權之主管機關、司法機關或其他政府機構、其他與全網行銷之交易相對人或業務相關機構而有蒐集、處理、利用個人資料必要者。&nbsp;<br/>
+                                &nbsp;(3)地區：前揭利用對象之國內及國外所在地。&nbsp;</p>
+
+                            <p>&nbsp;4.會員就個人資料之權利：會員就全網行銷所蒐集、處理、利用的個人資料，得以來電(0800-071-999)或來信(fami080@familynet.com.tw)的方式向全網行銷行使以下權利：&nbsp;<br/>
+                                &nbsp;(1)查詢或請求閱覽。&nbsp;<br/>
+                                &nbsp;(2)請求製給複製本。&nbsp;<br/>
+                                &nbsp;(3)請求補充或更正。&nbsp;<br/>
+                                &nbsp;(4)請求停止蒐集、處理或利用。&nbsp;<br/>
+                                &nbsp;(5)請求刪除。&nbsp;</p>
+
+                            <p>&nbsp;5.請注意！您可自由選擇所提供個人資料的詳細程度，但如您拒絕提供加入會員所需必要之資料，將可能導致無法享受完整服務或完全無法使用該項服務；如您提供不實的資料，全網行銷有權暫停或終止您的帳號，並拒絕您使用全網行銷的服務。&nbsp;</p>
+
+                            <p>二、會員的註冊義務
+                                |您承諾絕不為任何非法目的或以任何非法方式使用本服務，並承諾遵守中華民國相關法規及一切使用網際網路之國際慣例。您若係中華民國以外之使用者，並同意遵守所屬國家或地域之法令。您同意並保證不得利用本服務從事侵害他人權益或違法之下列行為：&nbsp;<br/>
+                                (一)上載、張貼、公布或傳送任何誹謗、侮辱、具威脅性、攻擊性、不雅、猥褻、不實、違反公共秩序或善良風俗或其他不法之文字、圖片或任何形式的檔案於全網行銷網站。&nbsp;<br/>
+                                (二)不得侵害他人名譽、隱私權、營業秘密、商標權、著作權、專利權、其他智慧財產權及其他權利。&nbsp;<br/>
+                                (三)不得冒用他人名義使用全網行銷之服務。&nbsp;<br/>
+                                (四)不得上載、張貼、傳輸或散佈任何含有電腦病毒或任何對電腦軟、硬體產生中斷、破壞或限制功能之程式碼之資料。&nbsp;<br/>
+                                (五)不得從事不法交易行為或張貼虛假不實、引人犯罪之訊息。&nbsp;<br/>
+                                (六)不得販賣槍枝、毒品、禁藥、盜版軟體或其他違禁物。&nbsp;<br/>
+                                (七)不得提供賭博資訊或以任何方式引誘他人參與賭博。&nbsp;<br/>
+                                (八)不得濫發廣告郵件、垃圾郵件、連鎖信、違法之多層次傳銷訊息等。 |(九)不得偽造訊息來源或以任何方式干擾傳輸來源之認定。&nbsp;<br/>
+                                (十)不得干擾或中斷全網行銷服務或伺服器或連結本服務之網路，或不遵守連結至本服務之相關需求、程序、政策或規則等。&nbsp;<br/>
+                                (十一)不得對於恐怖行動提供任何實質支持或資源。&nbsp;<br/>
+                                (十二)不得追蹤他人或其他干擾他人或為前述目前蒐集或儲存他人之個人資訊。&nbsp;<br/>
+                                (十三)其他全網行銷有正當理由認為不適當之行為。&nbsp;</p>
+
+                            <p>三、會員帳號、密碼及安全&nbsp;<br/>
+                                (一)會員完成本服務的登記程序之後，會員將取得一個特定之密碼及會員帳號。盡善良管理人義務維持密碼及帳號之機密安全，是會員的責任。任何依照規定方法輸入會員帳號及密碼與登入資料一致時，無論是否由本人親自輸入，均將推定為會員本人所使用，利用該密碼及帳號所進行的一切行動，會員本人應負完全責任。&nbsp;
+                            </p>
+
+                            <p>(二)會員同意以下事項：&nbsp;<br/>
+                                &nbsp;1.如會員的密碼或帳號遭到盜用、非授權使用或有其他任何安全問題發生時，會員應立即通知全網行銷&nbsp;<br/>
+                                &nbsp;2.每次連線完畢，均結束會員的帳號使用。&nbsp;<br/>
+                                &nbsp;3.會員的帳號、密碼及會員權益均僅供會員個人使用及享有，不得轉借、轉讓他人或與他人合用。&nbsp;<br/>
+                                &nbsp;4.帳號及密碼遭盜用、不當使用或其他全網行銷無法辯識是否為本人親自使用之情況時，對此所致之損害，除證明係因可歸責於全網行銷之事由所致，全網行銷將不負任何責任。&nbsp;<br/>
+                                &nbsp;5.全網行銷若知悉會員之帳號密碼確係遭他人冒用時，將立即暫停該帳號之使用(含該帳號所生交易之處理)。&nbsp;</p>
+
+                            <p>四、服務內容變更與電子報發送&nbsp;<br/>
+                                (一)會員同意全網行銷所提供本服務之範圍，全網行銷均得視業務需要及實際情形，增減、變更或終止相關服務的項目或內容，全網將公佈網站上且無需個別通知會員。&nbsp;<br/>
+                                (二)會員同意全網行銷得依實際執行情形，增加、修改或終止相關活動，並選擇最適方式告知會員。&nbsp;<br/>
+                                (三)會員同意全網行銷得不定期發送電子報至會員所登錄的電子信箱帳號。當會員收到訊息後表示拒絕接受行銷時，全網行銷將停止繼續發送行銷訊息。&nbsp;
+                            </p>
+
+                            <p>五、服務之停止、中斷
+                                |全網行銷將依一般合理之技術及方式，維持系統及服務之正常運作。但於以下各項情況時，全網行銷有權可以停止、中斷提供本服務：&nbsp;<br/>
+                                (一)全網購票網站電子通信設備進行必要之保養及施工時&nbsp;<br/>
+                                (二)發生突發性之電子通信設備故障時&nbsp;<br/>
+                                (三)全網購票網站申請之電子通信服務被停止，無法提供服務時&nbsp;<br/>
+                                (四)由於天災等不可抗力之因素或其他不可歸責於全網行銷致使全網購票網站無法提供服務時。&nbsp;</p>
+
+                            <p>六、兒童及青少年之保護
+                                |兒童及青少年上網已經成為無可避免之趨勢，使用網際網路獲取知識更可以培養子女的成熟度與競爭能力。然而網路上的確存有不適宜兒童及青少年接受的訊息，例如色情與暴力的訊息，兒童及青少年有可能因此受到心靈與肉體上的傷害。因此，為確保兒童及青少年使用網路的安全，並避免隱私權受到侵犯，家長（或監護人）應盡到下列義務：&nbsp;</p>
+
+                            <p>
+                                (一)檢閱各該網站是否有保護個人資料的隱私權政策，再決定是否同意提出相關的個人資料；並應持續叮嚀兒童及青少年不可洩漏自己或家人的任何資料（包括姓名、地址、電話、電子郵件信箱、照片、信用卡號等）給任何人。也不可以單獨接受網友的邀請或贈送禮物而與之見面。&nbsp;<br/>
+                                (二)謹慎選擇合適網站供兒童及青少年瀏覽。未滿十二歲之兒童上網時，應全程在旁陪伴，十二歲以上未滿十八歲之青少年上網前亦應斟酌是否給予同意。&nbsp;
+                            </p>
+
+                            <p>七、交易行為&nbsp;<br/>
+                                (一)會員使用本服務進行交易時，應依據全網購票網所提供之確認商品數量及價格機制進行。&nbsp;<br/>
+                                (二)會員使用本服務進行交易時，應依照消費者保護法、藝文展覽票券定型化契約應記載及不得記載事項、或藝文表演票券定型化契約應記載及不得記載事項之規定行使權利。<br/>
+                                (三)全網購票網提供票券退、換票機制並公告說明。但非供自用，購買票券而轉售圖利者，全網購票網得不予退、換票。&nbsp;</p>
+
+                            <p>八、智慧財產權的保護
+                                |全網行銷所使用之軟體或程式、網站上所有內容，包括但不限於著作、圖片、檔案、資訊、資料、網站架構、網站畫面的安排、網頁設計，均由全網行銷或其他權利人依法擁有之智慧財產權，包括但不限於商標權、專利權、著作權、營業秘密與專有技術等。非經全網行銷或權利人事前書面同意，任何人不得逕自使用、修改、重製、公開播送、改作、散布、發行、公開發表、進行還原工程、解編或反向組譯。若欲引用或轉載前述軟體、程式或網站內容，必須依法取得全網行銷或其他權利人的事前書面同意。如有違反，則應對全網行銷或其他權利人負損害賠償責任。
+                                |全網行銷所製作之圖樣（以下稱「全網行銷商標」），依其註冊或使用之狀態，受商標法及公平交易法等之保護，未經全網行銷事前書面同意，不可以任何方式使用全網行銷商標。&nbsp;</p>
+
+                            <p>九、責任之限制與排除&nbsp;<br/>
+                                (一)本服務所提供之各項功能，均依該功能當時之現況提供使用，全網行銷對於其效能、速度、完整性、可靠性、安全性、正確性等，皆不負擔任何明示或默示之擔保責任。&nbsp;<br/>
+                                (二)全網行銷並不保證本服務之網頁、伺服器、網域等所傳送的電子郵件或其內容不會含有電腦病毒等有害物；亦不保證郵件、檔案或資料之傳輸儲存均正確無誤不會斷線和出錯等，因各該郵件、檔案或資料傳送或儲存失敗、遺失或錯誤等所致之損害，全網行銷不負賠償責任。&nbsp;
+                            </p>
+
+                            <p>十、會員對全網行銷之授權
+                                |對於會員上載、傳送、輸入或提供之資料，會員同意全網購票網站得於合理之範圍內蒐集、處理、保存、傳遞及使用該等資料，以提供使用者其他資訊或服務、或作成會員統計資料、或進行關於網路行為之調查或研究，或為任何之合法使用。若會員無合法權利得授權他人使用、修改、重製、公開播送、改作、散布、發行、公開發表某資料，並將前述權利轉授權第三人者，請勿擅自將該資料上載、傳送、輸入或提供至全網購票網。任何資料一經會員上載、傳送、輸入或提供至全網購票網時，視為會員已允許全網購票網來無條件使用、修改、重製、公開播送、改作、散布、發行、公開發表該等資料，並得將前述權利轉授權他人，會員對此絕無異議。會員並應保證全網行銷使用、修改、重製、公開播送、改作、散布、發行、公開發表、轉授權該等資料，不致侵害任何第三人之智慧財產權，否則應對全網購票網負損害賠償責任（包括但不限於訴訟費用及律師費用等）。&nbsp;</p>
+
+                            <p>十一、特別授權事項
+                                |因使用本服務所提供之網路交易或活動，可能須透過宅配或貨運業者始能完成貨品(或贈品等)之配送或取回，因此，會員同意並授權全網行銷得視該次網路交易或活動之需求及目的，將由會員所提供且為配送所必要之個人資料(如收件人姓名、配送地址、連絡電話等)，提供予宅配或貨運業者及相關配合之廠商，以利完成該次貨品(或贈品等)之配送、取回。&nbsp;</p>
+
+                            <p>十二、拒絕或終止會員的使用
+                                |會員同意全網行銷得基於維護交易安全之考量，因任何理由，包含但不限於缺乏使用，或違反本服務條款的明文規定及精神，終止會員的密碼、帳號（或其任何部分）或本服務（或其任何部分）之使用，或將本服務內任何「會員內容」加以移除並刪除。此外，會員同意若本服務（或其任何部分）之使用被終止，全網購票網對會員或任何第三人均不承擔責任。&nbsp;</p>
+
+                            <p>十三、準據法與管轄法院
+                                |本服務條款之解釋與適用，以及與本服務條款有關或會員與全網行銷間因交易行為而產生之爭議或糾紛，應依照中華民國法律予以處理，並以台灣台北地方法院為第一審管轄法院，但若法律對於管轄法院另有強制規定者，仍應依其規定。&nbsp;</p>
+
+                            <p>十四、消費爭議處理 |您若不滿意本系統提供之服務，可撥叫客服專線、或以電子郵件或書面辦理申訴。 |服務專線電話：0800-071-999
+                                |服務電子郵件：fami080@familynet.com.tw&nbsp;</p>
+
+                            <p>十五、企業經營者資訊
+                                |FamiTicket系統網路服務：由全網行銷股份有限公司所經營。|公司負責人：葉榮廷。|營業所在地：台北市中山北路二段61號3樓
+                                |客服專線：0800-071-999 |<br/>
+                                &nbsp;</p>
+                        </div>
+                        <button class="btn terms-modal__submit" type="button" data-dismiss="modal">
+                            <span>關閉</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade terms-modal" id="SecurityStatementModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            資安聲明
+                        </div>
+                        <button class="close" type="button" data-dismiss="modal">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="terms-modal__content">
+                            <p style="margin:0cm 0cm 0.0001pt">&nbsp;</p>
+
+                            <p align="center"
+                               style="margin-top:7.5pt; text-align:center; margin:0cm 0cm 0.0001pt">
+                                <span style="font-size:12pt"><span style="background:white"><span
+                                        style="font-family:Calibri,sans-serif"><b><span
+                                        style="font-size:18.0pt"><span
+                                        style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                        style="color:#333333">【資</span></span></span></b><b> </b><b><span
+                                        style="font-size:18.0pt"><span
+                                        style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                        style="color:#333333">訊</span></span></span></b><b> </b><b><span
+                                        style="font-size:18.0pt"><span
+                                        style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                        style="color:#333333">安</span></span></span></b><b> </b><b><span
+                                        style="font-size:18.0pt"><span
+                                        style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                        style="color:#333333">全</span></span></span></b><b> </b><b><span
+                                        style="font-size:18.0pt"><span
+                                        style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                        style="color:#333333">聲</span></span></span></b><b> </b><b><span
+                                        style="font-size:18.0pt"><span
+                                        style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                        style="color:#333333">明】</span></span></span></b></span></span></span>
+                            </p>
+
+                            <p style="margin:0cm 0cm 0.0001pt"><span style="font-size:12pt"><span
+                                    style="background:white"><span
+                                    style="font-family:Calibri,sans-serif"><span
+                                    style="font-size:9.0pt"><span
+                                    style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                    style="color:#333333">各位親愛的朋友，感謝您蒞臨「</span></span></span><span
+                                    lang="EN-US" style="font-size:9.0pt"><span
+                                    style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"><span
+                                    style="color:#333333">FamiTicket</span></span></span><span
+                                    style="font-size:9.0pt"><span
+                                    style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                    style="color:#333333">全網購票網」</span></span></span><span
+                                    lang="EN-US" style="font-size:9.0pt"><span
+                                    style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"><span
+                                    style="color:#333333">(</span></span></span><span
+                                    style="font-size:9.0pt"><span
+                                    style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                    style="color:#333333">以下簡稱本網站</span></span></span><span
+                                    lang="EN-US" style="font-size:9.0pt"><span
+                                    style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"><span
+                                    style="color:#333333">)</span></span></span><span
+                                    style="font-size:9.0pt"><span
+                                    style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                    style="color:#333333">，我們非常重視您在使用網際網路時的安全以及隱私保護權利，為此本公司已依據個人資料保護法等法規，訂定資訊安全管理政策，並落實推動資訊安全管理作業，針對資訊安全及個人資料保護等重要項目，進行電子商務資訊安全強化。</span></span></span></span></span></span>
+                            </p>
+
+                            <p style="margin:0cm 0cm 0.0001pt"><span style="font-size:12pt"><span
+                                    style="background:white"><span
+                                    style="font-family:Calibri,sans-serif"><span
+                                    style="font-size:9.0pt"><span
+                                    style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                    style="color:#333333">為確保網際網路使用者在瀏覽本網站之資訊安全，暨協助您了解本公司如何保護您在使用本網站各項服務的安全及如何蒐集、運用及保護您所提供的各項資訊，本網站相關對外服務之主機皆已定期實施弱點掃描與系統漏洞修補作業，並針對重要資訊系統建立備援機制，以期提供您一個可靠的交易環境。另本網站已建置防火牆等安全防護設備，將對企圖入侵與破壞本網站之行為加以記錄、呈報及攔阻，並將詳實通報警政相關單位。</span></span></span></span></span></span>
+                            </p>
+
+                            <p style="margin:0cm 0cm 0.0001pt"><span style="font-size:12pt"><span
+                                    style="background:white"><span
+                                    style="font-family:Calibri,sans-serif"><span
+                                    style="font-size:9.0pt"><span
+                                    style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                    style="color:#333333">除了持續強化本網站之安全性外，對於您的個人及交易資料，我們承諾將僅只於業務內使用，在業務所必需之情況，以最小化原則及安全之傳輸方式提供受委託廠商有限之資料，該資料及受委託廠商亦在本網站資訊安全管理政策保障及規範之內。</span></span></span></span></span></span>
+                            </p>
+
+                            <p style="margin:0cm 0cm 0.0001pt"><span style="font-size:12pt"><span
+                                    style="background:white"><span
+                                    style="font-family:Calibri,sans-serif"><span
+                                    style="font-size:9.0pt"><span
+                                    style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                    style="color:#333333">若您對於本網站的隱私及安全政策仍有任何疑問，歡迎您隨時與我們聯絡。</span></span></span></span></span></span>
+                            </p>
+
+                            <p style="margin:0cm 0cm 0.0001pt">&nbsp;</p>
+
+                            <table align="right" class="Table"
+                                   style="background:white; border:undefined">
+                                <tbody>
+                                <tr>
+                                    <td style="background:white; padding:.75pt .75pt .75pt .75pt">
+                                        &nbsp;
+                                    </td>
+                                    <td style="background:white; padding:.75pt .75pt .75pt .75pt">
+                                        <p style="margin:0cm 0cm 0.0001pt"><span
+                                                style="font-size:12pt"><span
+                                                style="font-family:Calibri,sans-serif"><span
+                                                style="font-size:9.0pt"><span
+                                                style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                                style="color:#333333">總經理</span></span></span></span></span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="background:white; padding:.75pt .75pt .75pt .75pt"
+                                        valign="bottom">
+                                        <p align="right"
+                                           style="text-align:right; margin:0cm 0cm 0.0001pt"><span
+                                                style="font-size:12pt"><span
+                                                style="font-family:Calibri,sans-serif"><span
+                                                style="font-size:9.0pt"><span
+                                                style="font-family:&quot;新細明體&quot;,&quot;serif&quot;"><span
+                                                style="color:#333333">資訊安全負責人：</span></span></span><br/>
+			&nbsp;</span></span></p>
+                                    </td>
+                                    <td style="background:white; padding:.75pt .75pt .75pt .75pt">
+                                        <p style="margin:0cm 0cm 0.0001pt"><span
+                                                style="font-size:12pt"><span
+                                                style="font-family:Calibri,sans-serif"><span
+                                                lang="EN-US" style="font-size:9.0pt"><span
+                                                style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"><span
+                                                style="color:#333333"><img
+                                                alt="https://www.famiticket.com.tw/image/sign.png"
+                                                src="https://www.famiticket.com.tw/image/sign.png"
+                                                style="width:176px; height:79px"/></span></span></span></span></span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <p style="margin:0cm 0cm 0.0001pt">&nbsp;</p>
+                        </div>
+                        <button class="btn terms-modal__submit" type="button" data-dismiss="modal">
+                            <span>關閉</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    $('a.goTop').on('click', function (e) {
+        e.preventDefault();
+        $('html, body').stop().animate({ scrollTop: 0 }, 300);
+    });
+
+
+
+    </script>
+    <script>
+    var $catgBar = $('.catg-bar');
+    $catgBar.each(function (index, element) {
+        var $this = $(this),
+            $catgDropDown = $this.find('.catg-bar__dropdown'),
+            $catgBarCategory = $this.find('.catg-bar__category');
+        $catgBarCategory.on('mouseenter', function (e) {
+            var $this = $(this),
+                index = $(this).index();
+            $catgBarCategory.removeClass('catg-bar__category--active');
+            $this.addClass('catg-bar__category--active');
+            if ($catgDropDown.find('.category__list').eq(index).length) {
+                $this.addClass('catg-bar__category--haschild');
+            }
+            $catgDropDown.css('top', $this.position().top + $this.innerHeight());
+            $catgDropDown.addClass('catg-bar__dropdown--active');
+            $catgDropDown.find('.category__list').removeClass('category__list--active');
+            $catgDropDown.find('.category__list').eq(index).addClass('category__list--active');
+        });
+        $this.on('mouseleave', function () {
+            $catgDropDown.removeClass('catg-bar__dropdown--active');
+            $catgBarCategory.removeClass('catg-bar__category--active');
+        });
+    });
+    setContainerMinHht('.min-hight-container');
+    function setContainerMinHht(targetSelector) {
+        // 設定中間內容的最小高度
+        var headerHht = $('.header').outerHeight(),
+            navHht = $('.header__navbar').outerHeight(),
+            footerHht = $('.footer-outer').outerHeight(),
+            goTopHht = $('.goTop__wrap').outerHeight();
+        if (targetSelector) {
+            $(targetSelector).css('min-height', window.innerHeight - headerHht - navHht - footerHht - goTopHht);
+        }
+    }
+
+
+
+    </script>
+
+    <div class="modal fade" id="sendingSModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        贈送功能
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <br>
+                        <label id="resultText">
+                            贈送對象<span style="color:red;">需為FamiTicket會員</span>，送出前請確認輸入之資料正確。
+                        </label><br>
+                        <br>
+                        <div class="text-center mb-1">
+                            <div>
+                                <div class="order-cond__input-wrapper order-cond__input-wrapper--date row">
+                                    <label>接贈方手機號碼：</label>
+                                    <input id="inputBoxSenderCellNo" maxlength="10"
+                                           placeholder="0912345678"
+                                           onkeypress="return ValidNum(event);">
+                                </div>
+                                <div class="order-cond__input-wrapper order-cond__input-wrapper--date row">
+                                    <label>接贈方電子信箱：</label>
+                                    <input id="inputBoxSenderMail" maxlength="50"
+                                           placeholder="abcd@gmail.com">
+                                </div>
+                                <div class="order-cond__input-wrapper order-cond__input-wrapper--date row">
+                                    <label>訊息內容：&emsp;&emsp;&emsp;</label>
+                                    <input id="inputBoxSenderMsg" maxlength="100"
+                                           placeholder="100字數內">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-modal" style="width:150px"
+                                data-dismiss="modal">
+                            <span>取消</span>
+                        </button>
+                        <button type="button" class="btn btn-green" style="width:150px"
+                                onclick="btnSendingDelivery();">
+                            <span>確定</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sendingRModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        接收功能
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label id="sendingText">
+                        </label><br>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-modal" style="width:150px"
+                                onclick="btnSendingReturn();">
+                            <span>退回</span>
+                        </button>
+                        <button type="button" class="btn btn-green" style="width:150px"
+                                onclick="btnSendingReceive();">
+                            <span>接收</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sendingStatusModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        取消贈送功能
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label id="sendingStatusText">
+                        </label><br>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-modal" style="width:150px"
+                                data-dismiss="modal">
+                            <span>取消</span>
+                        </button>
+                        <button type="button" class="btn btn-green" style="width:150px"
+                                onclick="btnSendingCancel();">
+                            <span>取消贈送</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="usedModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        票券顯示
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <br>
+                        <label id="usedBlockName">區域：</label><br>
+                        <label id="usedSeat">座位：</label><br>
+                        <label id="usedPriceName">票種/票價：</label><br>
+                        <label id="usedVerifyPerson" style="color:red;"></label><br>
+                        <label id="usedVerifyTime" style="color:red;"></label><br>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-green" id="usedCofirm"
+                                style="width:200px" data-dismiss="modal">
+                            <span>確認</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+function getChWeek(p1) {
+var res = ""
+if(p1==1 || p1 == -1)
+{
+res = "一"
+}
+if(p1==2)
+{
+res = "二"
+}
+if(p1==3)
+{
+res = "三"
+}
+if(p1==4)
+{
+res = "四"
+}
+if(p1==5)
+{
+res = "五"
+}
+if(p1==6)
+{
+res = "六"
+}
+if(p1==0)
+{
+res = "日"
+}
+return res
+}
+
+    var TicketNo = "";
+    var timeOut = "";
+
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var dayOrder = date.getDate()-1;
+
+var week = date.getDay()
+var weekOrder = date.getDay()-1
+
+        if (month < 10) {
+          month = `0${month}`;
+        }
+        if (day < 10) {
+            day = `0${day}`;
+        }
+week = getChWeek(week)
+weekOrder = getChWeek(weekOrder)
+
+
+    var getToday = `${year}.${month}.${day} (${week}) 18:35`;
+    var getOrderToday = `${year}.${month}.${dayOrder} (${weekOrder}) 20:07`;
+
+    document.getElementById("Edit2").value = getOrderToday
+    document.getElementById("Edit6").value = getToday
+
+function setTimeOne(){
+var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var dayOrder = date.getDate()-1;
+
+var week = date.getDay()
+var weekOrder = date.getDay()-1
+
+        if (month < 10) {
+          month = `0${month}`;
+        }
+        if (day < 10) {
+            day = `0${day}`;
+        }
+week = getChWeek(week)
+
+    var getToday = `${year}.${month}.${day} (${week}) 14:05`;
+
+    document.getElementById("Edit6").value = getToday
+}
+function setTimeTwo(){
+var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var dayOrder = date.getDate()-1;
+
+var week = date.getDay()
+var weekOrder = date.getDay()-1
+
+        if (month < 10) {
+          month = `0${month}`;
+        }
+        if (day < 10) {
+            day = `0${day}`;
+        }
+week = getChWeek(week)
+
+    var getToday = `${year}.${month}.${day} (${week}) 17:05`;
+
+    document.getElementById("Edit6").value = getToday
+}
+function setTimeThree(){
+var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var dayOrder = date.getDate()-1;
+
+var week = date.getDay()
+var weekOrder = date.getDay()-1
+
+        if (month < 10) {
+          month = `0${month}`;
+        }
+        if (day < 10) {
+            day = `0${day}`;
+        }
+week = getChWeek(week)
+
+    var getToday = `${year}.${month}.${day} (${week}) 18:35`;
+
+    document.getElementById("Edit6").value = getToday
+}
+    function openRefundDesc(Desc) {
+
+        $("#eAlertText").html("");
+
+        $("#eAlertText").append(Desc);
+
+        $("#btnAlertModal").attr("onclick", "");
+        $("#eAlertModal").modal('show');
+        $("#eAlertModal").data('bs.modal')._config.backdrop = '';
+    }
+
+    function openSending(TNo) {
+
+        TicketNo = TNo;
+
+        $("#sendingText").html("");
+        var SendingMsg = $("#" + TNo + "-SW").val();
+
+        $("#sendingText").append(SendingMsg);
+
+        $("#sendingRModal").modal('show');
+    }
+
+    function openUsedTicket(TNo) {
+
+        $("#usedBlockName").html("區域：" + $('#' + TNo + '-BN').html());
+        $("#usedSeat").html("座位：" + $('#' + TNo + '-RS').html());
+        $("#usedPriceName").html("票種/票價：" + $('#' + TNo + '-PT').html());
+
+        var arrVerify = $('#' + TNo + '-DS').html().split("|");
+
+
+        $("#usedVerifyPerson").html(arrVerify[0]);
+        $("#usedVerifyTime").html(arrVerify[1]);
+
+        //優惠票種(非一般票顯示文字)
+        $("#usedConcession").html();
+        if ($('#' + TNo + '-C').html() != "R") {
+            $("#usedConcession").html("優待票，請出示相關證件");
+            //$("#qrConcession").html("優待票，請出示相關證件" + $('#' + TNo + '-C').html());
+        }
+        $("#usedModal").modal('show');
+    }
+    var minutes = 5;
+    function openQRcode(TNo) {
+
+        TicketNo = TNo;
+
+        $("#qrBlockName").html("區域：" + $('#' + TNo + '-BN').html());
+        $("#qrSeat").html("座位：" + $('#' + TNo + '-RS').html());
+        $("#qrPriceName").html("票種/票價：" + $('#' + TNo + '-PT').html());
+        $("#qrTaxNo").html("稅號：" + $('#' + TNo + '-EN').html());
+
+        $("#divEtGift").html("");
+        if ($('#' + TNo + '-ET').html() == "Y") {
+            var btnGiftText = "<button type='button' class='btn btn-green' id='qr' style='width:200px' data-dismiss='modal' onclick='btnSendingAsk(this);'><span>贈送</span></button>";
+            $("#divEtGift").append(btnGiftText);
+        }
+        else {
+            var btnUnGiftText = "<button type='button' class='btn btn-gray' id='qr' style='width:200px' data-dismiss='modal'><span>不可贈送</span></button>";
+            $("#divEtGift").append(btnUnGiftText);
+        }
+        //優惠票種(非一般票顯示文字)
+        $("#qrConcession").html();
+        if ($('#' + TNo + '-C').html() != "R")
+        {
+            $("#qrConcession").html("");
+        }
+		
+                        //贈送成功
+                        $("#qrCountDownText").text("有效時間：");
+                        $("#ImgQRcode").html("");
+                        $("#ImgQRcode").qrcode({
+                            text: TicketNo,
+                            background: '#FFF',
+                        });
+
+                        //清除先前設定的倒數
+                        clearInterval(timeOut);
+
+                        //設置倒數(分*60)
+						minutes = parseInt($("#minutes").val())
+                        var countMinute = minutes;
+                        if (countMinute > 0) {
+                            setCountDown(countMinute * 60);
+                        }
+                        else
+                        {
+                            $("#qrCountDownText").text("");
+                            $("#qrCountDownTime").text("");
+                        }
+                        $("#qrCodeModal").modal('show');
+                    
+
+
+    }
+
+    // 倒數
+    function setCountDown(time, afterCountDown) {
+        var $qrTime = $('#qrCountDownTime');
+        if ($qrTime.length) {
+            var minute = Math.floor(time / 60),
+                second = time % 60;
+            if (minute < 10) {
+                minute = '0' + minute;
+            }
+            if (second < 10) {
+                second = '0' + second;
+            }
+            $qrTime.text(minute + ':' + second);
+            time--;
+
+            timeOut = setTimeout(function () {
+                if (time >= 0) {
+                    setCountDown(time, afterCountDown, true)
+                }
+                else {
+                    $("#qrCountDownText").text("QR Code已失效，請重新點選顯示!")
+                    $qrTime.text("");
+                }
+            }, 1000);
+        }
+    }
+
+    function openSendingStatus(TNo) {
+        TicketNo = TNo;
+
+        $("#sendingStatusText").html("");
+        var SendingMsg = $("#" + TNo + "-SW").val();
+
+        $("#sendingStatusText").append(SendingMsg);
+
+        $("#sendingStatusModal").modal('show');
+    }
+
+    function ValidNum(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    function validateSubmit() {
+        var checkOK = '1';
+
+        if (RequiredCheck('inputBoxSenderCellNo', '手機號碼') == 0) {
+            checkOK = '0';
+        }
+        if (RequiredCheck('inputBoxSenderMail', '電子信箱') == 0) {
+            checkOK = '0';
+        }
+        if (RequiredCheck('inputBoxSenderMsg', '訊息內容') == 0) {
+            checkOK = '0';
+        }
+        if (checkOK == '0') {
+            $("#eAlertModal").modal('show');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function RequiredCheck(input_id) {
+        var checkResult = 0;
+        var tempData = document.getElementById(input_id).value;
+        if (tempData === '') {
+            $("#" + input_id).addClass("is-invalid");
+            document.getElementById("eAlertText").innerText = "三個欄位皆為必填!";
+
+            checkResult = 0;
+        } else {
+            $("#" + input_id).removeClass("is-invalid");
+            checkResult = 1;
+        }
+        return checkResult;
+    }
+
+    function btnSendingAsk(ele) {
+
+        if (ele != "fail")
+        {
+            $("#inputBoxSenderCellNo").val("");
+            $("#inputBoxSenderMail").val("");
+            $("#inputBoxSenderMsg").val("");
+
+            $("#inputBoxSenderCellNo").removeClass("is-invalid");
+            $("#inputBoxSenderMail").removeClass("is-invalid");
+            $("#inputBoxSenderMsg").removeClass("is-invalid");
+        }
+
+        $("#sendingSModal").modal('show');
+    }
+
+    function btnSendingDelivery() {
+
+        $("#sendingSModal").modal('hide');
+        if (validateSubmit() == true) {
+            $.ajax({
+                url: '/Home/User/ToSendCheck',
+                type: "POST",
+                data: JSON.stringify({ "TicketNo": TicketNo, "CellNo": $("#inputBoxSenderCellNo").val(), "Mail": $("#inputBoxSenderMail").val(), "Msg": $("#inputBoxSenderMsg").val() }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (formData) {
+
+                    if (formData.STATUS == 'OK') {
+                        //贈送成功
+
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "btnReload()");
+                    }
+                    else {
+                        //贈送失敗
+                        $("#inputBoxSenderCellNo").addClass("is-invalid");
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "btnSendingAsk('fail')");
+
+                    }
+                }, error: function () {
+                    $("#eAlertText").html(formData.MESSAGE);
+                    $("#btnAlertModal").attr("onclick", "btnSendingAsk('fail')");
+                }
+            });
+        }
+        else {
+            $("#btnAlertModal").attr("onclick", "btnSendingAsk('fail')");
+        }
+        $("#eAlertModal").modal('show');
+        $("#eAlertModal").data('bs.modal')._config.backdrop = 'static';
+    }
+
+    function btnSendingReceive() {
+
+        $("#sendingRModal").modal('hide');
+            $.ajax({
+                url: '/Home/User/ToReceiveCheck',
+                type: "POST",
+                data: JSON.stringify({ "TicketNo": TicketNo }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (formData) {
+
+                    if (formData.STATUS == 'OK') {
+                        //接收成功
+
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "btnReload()");
+                    }
+                    else {
+                        //接收失敗
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "openSending('" + TicketNo + "')");
+                    }
+                }, error: function () {
+                    $("#eAlertText").html(formData.MESSAGE);
+                    $("#btnAlertModal").attr("onclick", "openSending('" + TicketNo + "')");
+                }
+            });
+        $("#eAlertModal").modal('show');
+        $("#eAlertModal").data('bs.modal')._config.backdrop = 'static';
+    }
+
+    function btnSendingReturn() {
+
+        $("#sendingRModal").modal('hide');
+            $.ajax({
+                url: '/Home/User/ToReturnCheck',
+                type: "POST",
+                data: JSON.stringify({ "TicketNo": TicketNo }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (formData) {
+
+                    if (formData.STATUS == 'OK') {
+                        //退回成功
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "btnReload()");
+                    }
+                    else {
+                        //退回失敗
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "openSending('" + TicketNo + "')");
+                    }
+                }, error: function () {
+                    $("#eAlertText").html(formData.MESSAGE);
+                    $("#btnAlertModal").attr("onclick", "openSending('" + TicketNo + "')");
+                }
+            });
+        $("#eAlertModal").modal('show');
+        $("#eAlertModal").data('bs.modal')._config.backdrop = 'static';
+    }
+
+    function btnSendingCancel() {
+
+        $("#sendingStatusModal").modal('hide');
+            $.ajax({
+                url: '/Home/User/ToSendCancel',
+                type: "POST",
+                data: JSON.stringify({ "TicketNo": TicketNo }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (formData) {
+
+                    if (formData.STATUS == 'OK') {
+                        //取消贈送成功
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "btnReload()");
+                    }
+                    else {
+                        //取消贈送失敗
+                        $("#eAlertText").html(formData.MESSAGE);
+                        $("#btnAlertModal").attr("onclick", "openSendingStatus('" + TicketNo + "')");
+                    }
+                }, error: function () {
+                    $("#eAlertText").html(formData.MESSAGE);
+                    $("#btnAlertModal").attr("onclick", "openSendingStatus('" + TicketNo + "')");
+                }
+            });
+        $("#eAlertModal").modal('show');
+        $("#eAlertModal").data('bs.modal')._config.backdrop = 'static';
+    }
+
+    function btnReload() {
+        window.location.reload();
+    }
+
+	function btnChange() {
+	$("#"+TicketNo+"-tr").hide();
+	var Detail2 = $("#Detail2").val();
+	var Detail3 = $("#Detail3").val();
+	var Detail4 = $("#Detail4").val();
+		
+			var appendText = "<tr><tr id='"+TicketNo+"-tr'><td id='"+TicketNo+"-BN'>"+Detail2+"</td><td id='"+TicketNo+"-RS'>"+Detail3+"</td><td id='"+TicketNo+"-PT'>"+Detail4+"</td><td><button id='btn"+TicketNo+"' class='btn btn-buy' >已使用</button></td>";
+			
+	$("#appendUsedDetail").append(appendText);	
+    }
+	function closeEdit()
+	{
+	$("#Order1").html($("#Edit1").val());
+	$("#Order2").html($("#Edit2").val());
+	$("#Order3").html($("#Edit3").val());
+	$("#Order4").html($("#Edit4").val());
+	$("#Order5").html($("#Edit5").val());
+	$("#Order6").html($("#Edit6").val());
+	
+	$("#UsedOrder1").html($("#Edit1").val());
+	$("#UsedOrder2").html($("#Edit2").val());
+	$("#UsedOrder3").html($("#Edit3").val());
+	$("#UsedOrder4").html($("#Edit4").val());
+	$("#UsedOrder5").html($("#Edit5").val());
+	$("#UsedOrder6").html($("#Edit6").val());
+	
+	
+	$("#editArea").hide();
+	}
+	
+	function closeEditDetail()
+	{
+	$("#editDetail").hide();
+	}
+	function addDetail()
+	{
+
+	var nowTicket = $("#Detail1").val();
+	var Detail2 = $("#Detail2").val();
+	var Detail3 = $("#Detail3").val();
+	var Detail4 = $("#Detail4").val();
+	var appendText = "<tr><tr id='"+nowTicket+"-tr'><td id='"+nowTicket+"-BN'>"+Detail2+"</td><td id='"+nowTicket+"-RS'>"+Detail3+"</td><td id='"+nowTicket+"-PT'>"+Detail4+"</td><td><button id='btn"+nowTicket+"' class='btn btn-buy' >顯示QR Code</button></td><div id='"+nowTicket+"-EN' style='display:none;'>$168015119</div><div id='"+nowTicket+"-C' style='display:none;'>C</div><div id='"+nowTicket+"-ET' style='display:none;'>Y</div>";	
+	$("#appendDetail").append(appendText);
+
+	var date = new Date();
+	$("#Detail1").val('FT'+date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours() ).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2) );
+$("#btn"+nowTicket+"").bind( "click", function() {
+  openQRcode(nowTicket);
+});
+	}
+	
+
+
+
+    </script>
+
+    <div class="modal fade" id="eAlertModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        貼心提醒
+                    </div>
+
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-1">
+                        <label id="eAlertText"></label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnAlertModal" class="btn btn-modal"
+                                data-dismiss="modal" onclick="btnReload();">
+                            <span>確定</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="frmSearchHeader" name="frmSearchHeader" method="post"
+      action="https://ticket.fami.life/Home/Activity/Search">
+    <input type="hidden" id="hdnSearchHeaderCatg" name="searchCatgB"/>
+    <input type="hidden" id="hdnSearchHeaderName" name="searchName"/>
+    <input type="hidden" id="hdnSearchHeaderDateS" name="searchDateS"/>
+    <input type="hidden" id="hdnSearchHeaderDateE" name="searchDateE"/>
+</form>
+<script>
+        function btnSearchHeaderClick() {
+            document.getElementById("hdnSearchHeaderCatg").value = document.getElementById("searchCatg").value;
+            document.getElementById("hdnSearchHeaderName").value = document.getElementById("searchName").value;
+            document.getElementById("hdnSearchHeaderDateS").value = document.getElementById("searchDateS").value;
+            document.getElementById("hdnSearchHeaderDateE").value = document.getElementById("searchDateE").value;
+            document.getElementById("frmSearchHeader").submit();
+        }
+
+
+
+</script>
+
+</body>
+</html>

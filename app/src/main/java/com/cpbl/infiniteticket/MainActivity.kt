@@ -196,20 +196,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnSeat.setOnClickListener {
-            //TODO 製作假座位
-            Toast.makeText(
-                this,
-                "新功能尚未開放，敬請期待。",
-                Toast.LENGTH_SHORT
-            ).show()
+            webFami.loadUrl("file:///android_asset/InfiniteTicket/FamiTicket.html")
         }
 
         btnHide.setOnClickListener {
             linearControl.visibility = View.GONE
         }
-
-//        webview.loadUrl("file:///android_asset/FamiTicket.html")
-
     }
 
     private fun injectFamiTicket(memberId: String) {
