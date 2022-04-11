@@ -309,9 +309,11 @@
 
 
 
+
 </script>
 <script>
         function calendar(t, e, n) { var i = this, o = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); return this.opened = !0, this.t = t, this.y = e, this.m = n, this.d = null, /Edge/i.test(navigator.userAgent) && t.setAttribute("type", "text"), this.render = function (t, e) { var n = Date, o = !isNaN(e), s = new n(t, e - 1, 1), r = s.getDay(), a = new n(t, e, 0).getDate(), h = Array.apply(0, Array(o ? 42 : 12)); o && h.unshift("日", "一", "二", "三", "四", "五", "六"), t = o ? s.getFullYear() : t, e = s.getMonth() + 1, this.$w || (this.$w = $('<div class="famiCal-wrapper"></div>').appendTo("body")), this.opened && (this.$w.html('<div class="famiCal' + (o ? "" : " famiCal--month") + '"><table border=1><tr><td>《</td><td colspan=' + (o ? 5 : 2) + ">" + t + "年" + (o ? e + "月" : "") + "</td><td>》</td></tr>" + h.map(function (i, s) { var a = new n(t, e - 1, s - r - 6), h = a.getMonth() + 1 == e; return (s % (o ? 7 : 4) ? "" : (s ? "</tr>" : "") + "<tr>") + "<td" + (o && s > 6 && !h ? ' class="not-current">' : ">") + (o ? s < 7 ? i : a.getDate() : s + 1 + "月") + "</td>" }).join("") + "</tr></table></div>"), this.reposition(), this.$w.find("td").map(function (t, e) { return e.num = t, e }).on("mousedown", function (n) { var s = n.target.num, h = n.target.innerText; s < 3 ? i.render(t + (o ? 0 : s - 1), o && s - 1 ? e + s - 1 : NaN) : (s > 9 || !o) && (o && s > r + 9 && s <= r + a + 9 ? (i.d = parseInt(h), i.t.value = t + "-" + (e < 10 ? "0" : "") + e + "-" + (h < 10 ? "0" : "") + h, i.onChange && "function" == typeof i.onChange && i.onChange(t, e, h), i.t.blur()) : i.render(t, o ? e + (s < r + 10 ? -1 : 1) : s - 2)) })), this.$w.on("mousedown", function (t) { t.preventDefault() }) }, this.open = function () { this.opened = !0, this.render(this.y, this.m) }, this.close = function () { this.opened = !1, this.$w.html("") }, this.reposition = function () { var t = this.$w, e = this.t; this.opened && (t.css("top", $(e).offset().top + e.clientHeight), t.css("left", $(e).offset().left)) }, this.onChange = null, o || ($(t).on("focus", function (t) { t.preventDefault(), i.open(), i.render(i.y, i.m) }), $(t).on("blur", function () { i.close() })), this }
+
 
 
 
@@ -320,6 +322,7 @@
         var d = new Date();
         new calendar(searchDateS, d.getFullYear(), d.getMonth() + 1);
         new calendar(searchDateE, d.getFullYear(), d.getMonth() + 1);
+
 
 
 
@@ -369,7 +372,7 @@
                 <div id="editArea">
                     <table>
                         <tr>
-                            <select name="Team" style="width:250px;height:50px;">
+                            <select id="Team" style="width:250px;height:50px;" onchange="setTeam()">
                                 <option value="Fubon">Fubon</option>
                                 <option value="Rakuten">Rakuten</option>
                             </select>
@@ -399,10 +402,12 @@
                             <td><input id="Edit6" value="2021.04.14 (三) 14:00" style="width:250px;"><label>場次時間</label>
                             </td>
                         </tr>
-                        <tr><td>
-                            <button class="btn btn-buy" onclick="setTimeOne()">14:05</button>
-                            <button class="btn btn-buy" onclick="setTimeTwo()">17:05</button>
-                            <button class="btn btn-buy" onclick="setTimeThree()">18:35</button></td>
+                        <tr>
+                            <td>
+                                <button class="btn btn-buy" onclick="setTimeOne()">14:05</button>
+                                <button class="btn btn-buy" onclick="setTimeTwo()">17:05</button>
+                                <button class="btn btn-buy" onclick="setTimeThree()">18:35</button>
+                            </td>
                         </tr>
                     </table>
                     <br>
@@ -493,6 +498,38 @@
                                                        value="內票全票 / 300"><label>票種票價</label></td>
                                         </tr>
                                         <tr>
+                                            <td>
+                                                <select id="Ticket" style="width:183px;height:50px;"
+                                                        onchange="setTicket()">
+                                                    <option>內票全票</option>
+                                                    <option>內票門票</option>
+                                                    <option>聯名卡優惠票</option>
+                                                    <option>鐵悍席</option>
+                                                    <option>鐵粉席</option>
+                                                </select>
+                                                <br>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select id="Price" style="width:183px;height:50px;"
+                                                        onchange="setPrice()">
+                                                    <option>175</option>
+                                                    <option>350</option>
+                                                    <option>400</option>
+                                                    <option>450</option>
+                                                    <option>495</option>
+                                                    <option>500</option>
+                                                    <option>550</option>
+                                                    <option>600</option>
+                                                    <option>650</option>
+                                                </select>
+                                                <br>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td><input id="minutes" value="5"><label>倒數時間</label>
                                             </td>
                                         </tr>
@@ -541,6 +578,15 @@
                                     <tr>
                                         <td class="order-table__title">場次時間</td>
                                         <td colspan="3" id="UsedOrder6">----------</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="order-table__title">退票說明</td>
+                                        <td colspan="3">
+                                            <button class="btn btn-green"
+                                                    onclick="openRefundDesc('已使用，不可退票。')">
+                                                詳細內容
+                                            </button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -601,6 +647,8 @@
                 </div>
                 <div class="modal-body">
                     <div style="text-align:center;">
+                        <span style="color:red;">動態條碼，翻拍轉傳請注意效期</span>
+                        <br>
                         <span id="qrCountDownText" style="color:red;">有效時間：</span>
                         <span id="qrCountDownTime" style="color:red;">5:00</span>
                         <br>
@@ -617,7 +665,7 @@
                         <label id="qrSeat">座位：</label><br>
                         <label id="qrPriceName">票種/票價：</label><br>
                         <label id="qrTaxNo">稅號：</label><br>
-                        <label id="resultText">本娛樂票券經台北市稅捐稽徵處109年1月15日，北市稽中山乙字第1094100318號核准使用，並向演出所在地之稅捐稽徵處申請報繳娛樂稅。(內含代徵娛樂稅)</label><br>
+                        <label id="resultText">注意事項:凡持優惠票種，入場請出示證件供查驗。 特殊席位(露營席、鐵粉席、鐵悍席)票價均一價。 如遇因雨延賽，特殊席位權益將於補賽日執行。 全場可站立應援，請依票面座位入座。 如有變更及相關規範請參閱富邦悍將官網。 110年10月27日，北市稽中山乙字 第1104108969號核准使用，並向演出所在地之 稅捐稽徵處申請報繳娛樂稅。(內含代徵娛樂稅)</label><br>
 
 
                     </div>
@@ -994,6 +1042,7 @@
 
 
 
+
     </script>
     <script>
     var $catgBar = $('.catg-bar');
@@ -1033,6 +1082,7 @@
 
 
 
+
     </script>
 
     <div class="modal fade" id="sendingSModal">
@@ -1049,7 +1099,7 @@
                 <div class="modal-body">
                     <div>
                         <br>
-                        <label id="resultText">
+                        <label id="resultTexts">
                             贈送對象<span style="color:red;">需為FamiTicket會員</span>，送出前請確認輸入之資料正確。
                         </label><br>
                         <br>
@@ -1193,7 +1243,29 @@
 
 
     <script>
-
+function setTicket(){
+document.getElementById("Detail4").value = document.getElementById("Ticket").value + " / " + document.getElementById("Price").value
+}
+function setPrice(){
+document.getElementById("Detail4").value = document.getElementById("Ticket").value + " / " + document.getElementById("Price").value
+}
+function setTeam(){
+ d = document.getElementById("Team").value;
+ if(d == "Fubon")
+ {
+ document.getElementById("Edit3").value = "中華職棒33年富邦悍將主場例行賽"
+ document.getElementById("Edit4").value = "新莊棒球場"
+ document.getElementById("Detail2").value = "A5區"
+ document.getElementById("resultText").value = "注意事項:凡持優惠票種，入場請出示證件供查驗。 特殊席位(露營席、鐵粉席、鐵悍席)票價均一價。 如遇因雨延賽，特殊席位權益將於補賽日執行。 全場可站立應援，請依票面座位入座。 如有變更及相關規範請參閱富邦悍將官網。 110年10月27日，北市稽中山乙字 第1104108969號核准使用，並向演出所在地之 稅捐稽徵處申請報繳娛樂稅。(內含代徵娛樂稅)"
+ }
+ if(d=="Rakuten")
+ {
+  document.getElementById("Edit3").value = "中華職棒33年Rakuten主場例行賽"
+ document.getElementById("Edit4").value = "樂天桃園棒球場"
+ document.getElementById("Detail2").value = "東下F區"
+ document.getElementById("resultText").value = "注意事項:防疫期間，售票及入場辦法請遵照及配合官方公告規範 配合防疫，球團保有調整座位安排之權利 Rakuten Monkeys 主場賽事可站立應援 捐稽徵處110年10月27日，北市稽中山乙字 第1104108969號核准使用，並向演出所在地之 稅捐稽徵處申請報繳娛樂稅。(免徵娛樂稅)"
+ }
+}
 
 function getChWeek(p1) {
 var res = ""
@@ -1373,17 +1445,11 @@ week = getChWeek(week)
         $("#qrBlockName").html("區域：" + $('#' + TNo + '-BN').html());
         $("#qrSeat").html("座位：" + $('#' + TNo + '-RS').html());
         $("#qrPriceName").html("票種/票價：" + $('#' + TNo + '-PT').html());
-        $("#qrTaxNo").html("稅號：" + $('#' + TNo + '-EN').html());
+        $("#qrTaxNo").html("稅號： A28785049");
 
         $("#divEtGift").html("");
-        if ($('#' + TNo + '-ET').html() == "Y") {
-            var btnGiftText = "<button type='button' class='btn btn-green' id='qr' style='width:200px' data-dismiss='modal' onclick='btnSendingAsk(this);'><span>贈送</span></button>";
-            $("#divEtGift").append(btnGiftText);
-        }
-        else {
-            var btnUnGiftText = "<button type='button' class='btn btn-gray' id='qr' style='width:200px' data-dismiss='modal'><span>不可贈送</span></button>";
-            $("#divEtGift").append(btnUnGiftText);
-        }
+        var btnGiftText = "<button type='button' class='btn btn-green' id='qr' style='width:200px' data-dismiss='modal' onclick='btnSendingAsk(this);'><span>贈送</span></button>";
+        $("#divEtGift").append(btnGiftText);
         //優惠票種(非一般票顯示文字)
         $("#qrConcession").html();
         if ($('#' + TNo + '-C').html() != "R")
@@ -1658,9 +1724,14 @@ week = getChWeek(week)
 	var Detail3 = $("#Detail3").val();
 	var Detail4 = $("#Detail4").val();
 		
-			var appendText = "<tr><tr id='"+TicketNo+"-tr'><td id='"+TicketNo+"-BN'>"+Detail2+"</td><td id='"+TicketNo+"-RS'>"+Detail3+"</td><td id='"+TicketNo+"-PT'>"+Detail4+"</td><td><button id='btn"+TicketNo+"' class='btn btn-buy' >已使用</button></td>";
-			
-	$("#appendUsedDetail").append(appendText);	
+	var appendText = "<tr><tr id='"+TicketNo+"-tr'><td id='"+TicketNo+"-BN'>"+Detail2+"</td><td id='"+TicketNo+"-RS'>"+Detail3+"</td><td id='"+TicketNo+"-PT'>"+Detail4+"</td><td><button id='btn"+TicketNo+"-used' class='btn btn-buy' >已使用</button></td>";
+
+
+
+	$("#appendUsedDetail").append(appendText);
+		$("#btn"+TicketNo+"-used").bind( "click", function() {
+<!--  openQRcode(TicketNo);-->
+});
     }
 	function closeEdit()
 	{
@@ -1706,6 +1777,7 @@ $("#btn"+nowTicket+"").bind( "click", function() {
 
 
 
+
     </script>
 
     <div class="modal fade" id="eAlertModal">
@@ -1748,6 +1820,7 @@ $("#btn"+nowTicket+"").bind( "click", function() {
             document.getElementById("hdnSearchHeaderDateE").value = document.getElementById("searchDateE").value;
             document.getElementById("frmSearchHeader").submit();
         }
+
 
 
 
