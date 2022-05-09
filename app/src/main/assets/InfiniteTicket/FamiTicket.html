@@ -502,7 +502,7 @@
                                                 <select id="Ticket" style="width:183px;height:50px;"
                                                         onchange="setTicket()">
                                                     <option>內票全票</option>
-                                                    <option>內票門票</option>
+                                                    <option>內野門票</option>
                                                     <option>聯名卡優惠票</option>
                                                     <option>鐵悍席</option>
                                                     <option>鐵粉席</option>
@@ -1317,6 +1317,9 @@ var weekOrder = date.getDay()-1
         }
         if (day < 10) {
             day = `0${day}`;
+        }
+        if(dayOrder<10){
+        dayOrder= `0${dayOrder}`;
         }
 week = getChWeek(week)
 weekOrder = getChWeek(weekOrder)
